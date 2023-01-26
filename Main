@@ -1,0 +1,78 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		// Local Objects and Variables
+		HashTable hashtable = new HashTable();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int option, key;
+
+		// Menu
+		System.out.println("---HASH TABLE---");
+		while (true) {
+			System.out.println("\n1. Add New Key");
+			System.out.println("2. Display Hash Table");
+			System.out.println("3. Search");
+			System.out.println("4. Delete");
+			System.out.println("5. Exit");
+			System.out.print("Enter Option Number: ");
+			option = Integer.parseInt(reader.readLine());
+
+			// Add New Key
+			if (option == 1) {
+				System.out.println("\n--Add New Key--");
+				System.out.print("Enter New Key: ");
+				key = Integer.parseInt(reader.readLine());
+
+				while (key < 0) {
+					System.out.println("Only Enter Positive Integer.");
+					System.out.println("Please try again.");
+					key = Integer.parseInt(reader.readLine());
+				}
+
+				hashtable.add(key);
+			
+			//Display Hash Table
+			} else if (option == 2) {
+				System.out.println("\n--Display Hash Table--");
+				hashtable.view();
+
+			//Search
+			} else if (option == 3) {
+				System.out.println("\n--Search Key--");
+				System.out.print("Enter Key to Search: ");
+				key = Integer.parseInt(reader.readLine());
+
+				hashtable.search(key);
+
+			//Delete
+			} else if (option == 4) {
+				System.out.println("\n--Delete Key--");
+				System.out.print("Enter Key to Delete: ");
+				key = Integer.parseInt(reader.readLine());
+
+				hashtable.delete(key);
+				
+			//Exit
+			} else if (option == 5) {
+				System.out.print("\n--Exit--"+ "\nProgram will be terminated");				
+				for (int i = 0; i < 3; i++) {
+					Thread.sleep(1000);
+					System.out.print(".");		
+				}
+				System.out.print("\nProgram terminated.");
+				System.exit(0);
+
+			} else {
+				System.out.println("Only choose from numbers 1-5.");
+				System.out.println("Please try again.");
+			}
+
+		}
+
+	}
+
+}
