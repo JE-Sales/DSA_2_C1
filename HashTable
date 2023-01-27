@@ -4,32 +4,32 @@ public class HashTable {
 
 	// Add New Key
 	public void add(int key) {
-		// Hash
-		int index = HashFunction(key), pointer = (index + 1);
-		System.out.println("Original Index: " + index);
+		int hash = HashFunction(key);
+		int probingIndex = (hash + 1);
+		System.out.println("Original Index: " + hash);
 
 		// Linear Probing
-		if (arr[index] != 0) {
+		if (arr[hash] != 0) {
 
 			while (true) {
-				if (arr[pointer] == 0) {
-					index = pointer;
-					System.out.println("New Index: " + index + "\n");
-					arr[index] = key;
+				if (arr[probingIndex] == 0) {
+					hash = probingIndex;
+					System.out.println("New Index: " + hash + "\n");
+					arr[hash] = key;
 					System.out.println("New key added successfully!");
 					break;
 				}
 
-				pointer = pointer != (arr.length - 1) ? pointer + 1 : 0;
+				probingIndex = probingIndex != (arr.length - 1) ? probingIndex + 1 : 0;
 
-				if (pointer == index) {
+				if (probingIndex == hash) {
 					System.out.println("The hash table is full! Add New Key unsuccessful.");
 					break;
 				}
 			}
 
 		} else {
-			arr[index] = key;
+			arr[hash] = key;
 			System.out.println("New key added successfully!");
 		}
 
@@ -44,50 +44,50 @@ public class HashTable {
 
 	// Search Key Index
 	public void search(int key) {
-		int index = HashFunction(key), pointer = (index + 1);
-
-		if (arr[index] != key) {
+		int hash = HashFunction(key);
+		int probingIndex = (hash + 1);
+		if (arr[hash] != key) {
 			while (true) {
-				if (arr[pointer] == key) {
-					index = pointer;
-					System.out.println(" Index : " + index + "Key : " + key);
+				if (arr[probingIndex] == key) {
+					hash = probingIndex;
+					System.out.println(" Index : " + hash + "Key : " + key);
 					break;
 				}
 
-				pointer = pointer != (arr.length - 1) ? pointer + 1 : 0;
+				probingIndex = probingIndex != (arr.length - 1) ? probingIndex + 1 : 0;
 
-				if (pointer == index) {
+				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
 					break;
 				}
 			}
 		} else {
-			System.out.println("Key : " + key + " Index : " + index);
+			System.out.println("Key : " + key + " Index : " + hash);
 		}
 	}
 
 	// Delete Key
 	public void delete(int key) {
-		int index = HashFunction(key), pointer = (index + 1);
-
-		if (arr[index] != key) {
+		int hash = HashFunction(key);
+		int probingIndex = (hash + 1);
+		if (arr[hash] != key) {
 			while (true) {
-				if (arr[pointer] == key) {
-					index = pointer;
-					arr[index] = 0;
+				if (arr[probingIndex] == key) {
+					hash = probingIndex;
+					arr[hash] = 0;
 					System.out.println("Key deleted successfully!");
 					break;
 				}
 
-				pointer = pointer != (arr.length - 1) ? pointer + 1 : 0;
+				probingIndex = probingIndex != (arr.length - 1) ? probingIndex + 1 : 0;
 
-				if (pointer == index) {
+				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
 					break;
 				}
 			}
 		} else {
-			arr[index] = 0;
+			arr[hash] = 0;
 			System.out.println("Key deleted successfully!");
 		}
 	}
