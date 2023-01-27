@@ -5,7 +5,7 @@ public class HashTable {
 	// Add New Key
 	public void add(int key) {
 		// Hash
-		int index = hash(key), pointer = (index + 1);
+		int index = HashFunction(key), pointer = (index + 1);
 		System.out.println("Original Index: " + index);
 
 		// Linear Probing
@@ -44,7 +44,7 @@ public class HashTable {
 
 	// Search Key Index
 	public void search(int key) {
-		int index = hash(key), pointer = (index + 1);
+		int index = HashFunction(key), pointer = (index + 1);
 
 		if (arr[index] != key) {
 			while (true) {
@@ -68,7 +68,7 @@ public class HashTable {
 
 	// Delete Key
 	public void delete(int key) {
-		int index = hash(key), pointer = (index + 1);
+		int index = HashFunction(key), pointer = (index + 1);
 
 		if (arr[index] != key) {
 			while (true) {
@@ -93,7 +93,8 @@ public class HashTable {
 	}
 
 	//For Hashing
-	private static int hash(int key) {
-		return (key % 20);
+	private static int HashFunction(int key) {
+		int hash = key % 20;
+		return hash;
 	}
 }
