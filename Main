@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,11 +45,16 @@ public class Main {
 
 			//Search
 			} else if (option == 3) {
-				System.out.println("\n--Search Key--");
-				System.out.print("Enter Key to Search: ");
-				key = Integer.parseInt(reader.readLine());
-
-				hashtable.search(key);
+				try {
+					System.out.println("\n--Search Key--");
+					System.out.print("Enter Key to Search: ");
+					key = Integer.parseInt(reader.readLine());
+					hashtable.search(key);
+				} catch (NumberFormatException e) {
+					System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+				}
 
 			//Delete
 			} else if (option == 4) {
