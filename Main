@@ -58,14 +58,20 @@ public class Main {
 
 			//Delete
 			} else if (option == 4) {
-				System.out.println("\n--Delete Key--");
-				System.out.print("Enter Key to Delete: ");
-				key = Integer.parseInt(reader.readLine());
+				try {
+					System.out.println("\n--Delete Key--");
+					System.out.print("Enter Key to Delete: ");
+					key = Integer.parseInt(reader.readLine());
 
-				hashtable.delete(key);
+					hashtable.delete(key);
+				} catch (NumberFormatException e) {
+					System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+				} catch (ArrayIndexOutOfBoundsException e) {
+					System.out.println("The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+				}
 				
 			//Exit
-			} else if (option == 5) {
+			}  else if (option == 5) {
 				System.out.print("\n--Exit--"+ "\nProgram will be terminated");				
 				for (int i = 0; i < 3; i++) {
 					Thread.sleep(1000);
