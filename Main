@@ -25,16 +25,18 @@ public class Main {
 			if (option == 1) {
 				System.out.println("\n--Add New Key--");
 				System.out.print("Enter New Key: ");
-				key = Integer.parseInt(reader.readLine());
-
-				while (key < 0) {
-					System.out.println("Only Enter Positive Integer.");
-					System.out.println("Please try again.");
+				try {
+					
 					key = Integer.parseInt(reader.readLine());
+					if(key <0) {
+						System.out.println("Only Enter WHOLE NUMBERS!\nPlease try again.");
+					}else {
+						hashtable.add(key);
+					}
+				} catch (NumberFormatException e) {
+					System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
 				}
-
-				hashtable.add(key);
-			
+				
 			//Display Hash Table
 			} else if (option == 2) {
 				System.out.println("\n--Display Hash Table--");
