@@ -135,7 +135,7 @@ public class HashTable {
 	}
 
 	/*
-	 *  A method for Hashing using the division method, which takes the entered key
+	 * A method for Hashing using the division method, which takes the entered key
 	 *  of the user and modulo dividing it to 20. Then the remainder of the division
 	 *  will be returned as a hash.
 	 */
