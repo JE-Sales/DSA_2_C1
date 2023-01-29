@@ -2,13 +2,28 @@
 public class HashTable {
 	private int[] arr = new int[20];
 
-	// Add New Key
+	/*
+	 *  A method that adds a  new Key on the HashTable.
+	 *  Also displays the computed hash before inserting the key on
+	 *  the HashTable.
+	 */
 	public void add(int key) {
 		int hash = HashFunction(key);
 		int probingIndex = (hash + 1);
 		System.out.println("Original Index: " + hash);
 
-		// Linear Probing
+		/*
+		 *  Adds a new hash on the HashTable using Linear Probing.
+		 *  If the element of the array which has an index that has the same value as the hash contains
+		 *  a zero value, which means its unoccupied, the hash will be inserted on that element.
+		 *  Else if the element of the array which has an index that has the same value as the hash 
+		 *  contains a non-zero value, which means that the index was occupied by an another hash, 
+		 *  the hash that will be inserted will then occupy the next nearest element that contains a zero 
+		 *  value. After reaching the end of the array and still is  unsuccessful to find an unoccupied
+		 *  element, the program will then go back at the top of the array and will still search for an
+		 *  element. But if the hash is still unsuccessful to find an unoccupied element, an error message 
+		 *  will be displayed and the user will be returned to the Menu.
+		 */
 		if (arr[hash] != 0) {
 
 			while (true) {
@@ -35,17 +50,32 @@ public class HashTable {
 
 	}
 
-	// Display Hash Table
+	/*
+	 *  A method that displays the HashTable using a for loop by displaying each value
+	 *  of the element of the array. 
+	 */
 	public void view() {
 		for (int i = 0; i < arr.length; i++)
 			System.out.println("Index : " + i + " Key : " + arr[i]);
 
 	}
 
-	// Search Key Index
+	// A method that searches a Key on the HashTable.
 	public void search(int key) {
 		int hash = HashFunction(key);
 		int probingIndex = (hash + 1);
+		
+		/*
+		 *  If the desired-to-search key is on the element of the array that has an index 
+		 *  that has the same value as the hash of the key, the program will then display 
+		 *  the key and also the index of the key on the array. Else if the desired-to-search 
+		 *  key is not on the element of the array that has an index that has the same value 
+		 *  as the hash of the key, the program will then find the desired-to-search key on
+		 *  the other elements of the HashTable and display it alongside its new index. After
+		 *  reaching the end of the array, the program will now search from the top of the 
+		 *  HashTable. But if the program is still unsuccessful to find the desired-to-search 
+		 *  key, an error  message will be displayed and the user will be returned to the Menu.
+		 */
 		if (arr[hash] != key) {
 			while (true) {
 				if (arr[probingIndex] == key) {
@@ -66,10 +96,22 @@ public class HashTable {
 		}
 	}
 
-	// Delete Key
+	// A method that deletes a Key on the HashTable.
 	public void delete(int key) {
 		int hash = HashFunction(key);
 		int probingIndex = (hash + 1);
+		
+		/*
+		 *  If the desired-to-delete key is on the element of the array that has an index 
+		 *  that has the same value as the hash of the key, the program will then remove 
+		 *  the key on the HashTable and will be replace by a dummy value, which is 0. Else 
+		 *  if the desired-to-delete key is not on the element of the array that has an index 
+		 *  that has the same value as the hash of the key, the program will then find the 
+		 *  desired-to-delete key on the other elements of the HashTable and delete it. After
+		 *  reaching the end of the array, the program will now search from the top of the 
+		 *  HashTable. But if the program is still unsuccessful to find the desired-to-delete 
+		 *  key, an error  message will be displayed and the user will be returned to the Menu.
+		 */
 		if (arr[hash] != key) {
 			while (true) {
 				if (arr[probingIndex] == key) {
@@ -92,7 +134,11 @@ public class HashTable {
 		}
 	}
 
-	//For Hashing
+	/*
+	 *  A method for Hashing using the division method, which takes the entered key
+	 *  of the user and modulo dividing it to 20. Then the remainder of the division
+	 *  will be returned as a hash.
+	 */
 	private static int HashFunction(int key) {
 		int hash = key % 20;
 		return hash;
