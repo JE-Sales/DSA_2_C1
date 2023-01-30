@@ -6,15 +6,40 @@ import java.io.InputStreamReader;
 public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		// Local objects and variables.
+		/*
+		 * Declaration and initialization of objects and variables that will be used in
+		 * this program. HashTable will be utilized as the data structure for storing
+		 * the data that will be inserted in the program. BufferedReader on the other
+		 * hand is a method that will be used to get the data that the users will
+		 * insert. Lastly, option and key variables holds the integer value that will
+		 * decide what operations will be executed and the integer value that will be
+		 * inserted, searched or deleted in the featured data structure respectively.
+		 */
+
 		HashTable hashtable = new HashTable();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		int option, key;
 
-		// An infinite loop that will endlessly display the Menu unless terminated.
+		/*
+		 * A loop that serves as the menu for the program and will run endlessly until
+		 * the user decides to terminate the program. This loop contains a switch case
+		 * that determines what operation will be executed after a certain integer is
+		 * inserted. The first case adds a new key to the HashTable. The second case
+		 * displays the HashTable by calling the "view" method of the HashTable. The
+		 * third case searches the entered key by the user on the HashTable. The fourth
+		 * case deletes the desired key of the user if and only if the key is existing
+		 * in the HashTable. The last case which is the fifth case does a simple job of
+		 * terminating the program. This loop contains many filters for the value that
+		 * will be inserted into it. The first filter is that it will only take integer
+		 * values from number one to five for selecting the operations which means that
+		 * other numbers and characters will not be accepted. The second filter is for
+		 * the first to the third case where it Checks the entered number, if the number
+		 * is less than 0 and/or not a whole number, an error message will be displayed
+		 * and the user will be returned to the Menu.
+		 */
 		System.out.println("---HASH TABLE---");
 		while (true) {
-		
+
 			try {
 				System.out.println("\n1. Add New Key");
 				System.out.println("2. Display Hash Table");
@@ -22,109 +47,85 @@ public class Main {
 				System.out.println("4. Delete");
 				System.out.println("5. Exit");
 				System.out.print("Enter Option Number: ");
-				
+
 				option = Integer.parseInt(reader.readLine());
-				 
-				/*
-				 *  Checks the entered number, if the number is less than 1 OR greater than 5, an error 
-				 *  message will be displayed and the user will be returned to the Menu.
-				 */ 
+
 				if (option < 1 || option > 5) {
 					throw new NumberFormatException();
 				}
-				
+
 				switch (option) {
-				
-				// Adds a new Key on the HashTable.
-				case 1: 
+
+				case 1:
 					System.out.println("\n--Add New Key--");
 					System.out.print("Enter New Key: ");
-					
-					/*
-					 *  Checks the entered number, if the number is less than 0 and/or not a whole 
-					 *  number, an error message will be displayed and the user will be  returned to the Menu. 
-					 *  But if the entered number is greater than zero and/or a whole number, the key
-					 *  or the entered number will be passed through as a parameter on the called "add" 
-					 *  method of the Hash Table.
-					 */
-					try {	
+
+					try {
 						key = Integer.parseInt(reader.readLine());
-			
-						if(key <0) {
+
+						if (key < 0) {
 							System.out.println("Only Enter WHOLE NUMBERS!\nPlease try again.");
-						}else {
+						} else {
 							hashtable.add(key);
 						}
 					} catch (NumberFormatException e) {
 						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
-						
+
 					}
-					
+
 					break;
-					
-					// Displays the HashTable by calling the "view" method of the HashTable.
-					case 2:
-						System.out.println("\n--Display Hash Table--");
-						hashtable.view();
-						
-						break;
-					
-					// Searches the entered key by the user on the HashTable.
-					case 3:
-					        /*
-					         *  If the entered number or key is not a whole number and/or a positive integer,
-						 *  an error message will be displayed and the user will be returned to the Menu.
-						 *  Else, the "search" method of the HashTable will be called and the entered number 
-						 *  or key will be passed through as a parameter.
-						 */
-						try {
-							System.out.println("\n--Search Key--");
-							System.out.print("Enter Key to Search: ");
-							key = Integer.parseInt(reader.readLine());
-							hashtable.search(key);
-						} catch (NumberFormatException e) {
-							System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
-						} catch (ArrayIndexOutOfBoundsException e) {
-							System.out.println("The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");		
-						}
-						
-						break;
-						
-					// Deletes the entered key by the user on the HashTable.
-					case 4:
-							try {
-								System.out.println("\n--Delete Key--");
-								System.out.print("Enter Key to Delete: ");
-								key = Integer.parseInt(reader.readLine());
-								hashtable.delete(key);
-						} catch (NumberFormatException e) {
-								System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
-						} catch (ArrayIndexOutOfBoundsException e) {
-								System.out.println("The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
-						}
-							
-						break;
-						
-					// Exits the program.
-					case 5:
-						System.out.print("\n--Exit--"+ "\nProgram will be terminated");	
-						
-							// A 3-second timer that will be visibly showed before terminating the program.
-							for (int i = 0; i < 3; i++) {
-								Thread.sleep(1000);
-									System.out.print(".");		
-								}
-								System.out.print("\nProgram terminated.");
-								System.exit(0);}
+
+				case 2:
+					System.out.println("\n--Display Hash Table--");
+					hashtable.view();
+
+					break;
+
+				case 3:
+					try {
+						System.out.println("\n--Search Key--");
+						System.out.print("Enter Key to Search: ");
+						key = Integer.parseInt(reader.readLine());
+						hashtable.search(key);
+					} catch (NumberFormatException e) {
+						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+					} catch (ArrayIndexOutOfBoundsException e) {
+						System.out.println(
+								"The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+					}
+
+					break;
+
+				case 4:
+					try {
+						System.out.println("\n--Delete Key--");
+						System.out.print("Enter Key to Delete: ");
+						key = Integer.parseInt(reader.readLine());
+						hashtable.delete(key);
+					} catch (NumberFormatException e) {
+						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+					} catch (ArrayIndexOutOfBoundsException e) {
+						System.out.println(
+								"The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+					}
+
+					break;
+
+				case 5:
+					System.out.print("\n--Exit--" + "\nProgram will be terminated");
+
+					for (int i = 0; i < 3; i++) {
+						Thread.sleep(1000);
+						System.out.print(".");
+					}
+					System.out.print("\nProgram terminated.");
+					System.exit(0);
 				}
-				// An error message that will be displayed if the user entered a number except numbers 1-5 only.
-				catch (NumberFormatException e) {
-					System.out.println("Option number must be selected from WHOLE NUMBERS 1-5!\nPlease try again.");
+			}
+
+			catch (NumberFormatException e) {
+				System.out.println("Option number must be selected from WHOLE NUMBERS 1-5!\nPlease try again.");
 			}
 		}
 	}
 }
-
-			
-			
-			
