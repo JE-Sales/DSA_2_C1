@@ -74,27 +74,32 @@ public class HashTable {
 	 * If it is found, the index together with the key is displayed.
 	 */
 	public void search(int key) {
-		int hash = HashFunction(key);
-		int probingIndex = (hash + 1);
-		
-		if (table[hash] != key) {
-			while (true) {
-				if (table[probingIndex] == key) {
-					hash = probingIndex;
-					System.out.println(" Index : " + hash + "Key : " + key);
-					break;
+		if(key <=0) {
+			System.out.println("Any non Positive Integer cannot be found in the Hash Table");
+		}else {
+			int hash = HashFunction(key);
+			int probingIndex = (hash + 1);
+			
+			
+			if (table[hash] != key) {
+				while (true) {
+					if (table[probingIndex] == key) {
+						hash = probingIndex;
+						System.out.println(" Index : " + hash + "Key : " + key);
+						break;
+					}
+					//Switches the probingIndex back to the start when the end of the table is reached.
+					probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
+					
+					//If the probingIndex gets back to the hash, it is considered as full.
+					if (probingIndex == hash) {
+						System.out.println("The key is non-existent in the hashtable.");
+						break;
+					}
 				}
-				//Switches the probingIndex back to the start when the end of the table is reached.
-				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
-				
-				//If the probingIndex gets back to the hash, it is considered as full.
-				if (probingIndex == hash) {
-					System.out.println("The key is non-existent in the hashtable.");
-					break;
-				}
+			} else {
+				System.out.println("Key : " + key + " Index : " + hash);
 			}
-		} else {
-			System.out.println("Key : " + key + " Index : " + hash);
 		}
 	}
 
