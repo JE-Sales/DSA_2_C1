@@ -1,6 +1,6 @@
 
 public class HashTable {
-	private int[] storage;
+	private int[] table;
 
 	/*
 	 * This is the default constructor for the HashTable. The constructor
@@ -10,9 +10,9 @@ public class HashTable {
 	 * HashTable can also handle the value zero.
 	 */
 	public HashTable() {
-		storage = new int[20];
-		for (int i = 0; i < storage.length; i++)
-			storage[i] = -1;
+		table = new int[20];
+		for (int i = 0; i < table.length; i++)
+			table[i] = -1;
 	}
 
 	/*
@@ -43,18 +43,18 @@ public class HashTable {
 		 * to find an unoccupied element, an error message will be displayed and the
 		 * user will be returned to the Menu.
 		 */
-		if (storage[hash] != -1) {
+		if (table[hash] != -1) {
 
 			while (true) {
-				if (storage[probingIndex] == -1) {
+				if (table[probingIndex] == -1) {
 					hash = probingIndex;
 					System.out.println("New Index: " + hash + "\n");
-					storage[hash] = key;
+					table[hash] = key;
 					System.out.println("New key added successfully!");
 					break;
 				}
 
-				probingIndex = probingIndex != (storage.length - 1) ? probingIndex + 1 : 0;
+				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
 
 				if (probingIndex == hash) {
 					System.out.println("The hash table is full! Add New Key unsuccessful.");
@@ -63,7 +63,7 @@ public class HashTable {
 			}
 
 		} else {
-			storage[hash] = key;
+			table[hash] = key;
 			System.out.println("New key added successfully!");
 		}
 
@@ -76,12 +76,8 @@ public class HashTable {
 	 * by this method.
 	 */
 	public void view() {
-		for (int i = 0; i < storage.length; i++)
-			if(storage[i] == -1) {
-				System.out.println("Index : " + i + " Key : Empty ");
-			}else {
-				System.out.println("Index : " + i + " Key : " + storage[i]);
-			}
+		for (int i = 0; i < table.length; i++)
+			System.out.println("Index : " + i + " Key : " + (table[i] == -1 ? "Empty" : table[i]));
 
 	}
 
@@ -108,15 +104,15 @@ public class HashTable {
 		 * unsuccessful to find the desired-to-search key, an error message will be
 		 * displayed and the user will be returned to the Menu.
 		 */
-		if (storage[hash] != key) {
+		if (table[hash] != key) {
 			while (true) {
-				if (storage[probingIndex] == key) {
+				if (table[probingIndex] == key) {
 					hash = probingIndex;
 					System.out.println(" Index : " + hash + "Key : " + key);
 					break;
 				}
 
-				probingIndex = probingIndex != (storage.length - 1) ? probingIndex + 1 : 0;
+				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
 
 				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
@@ -150,16 +146,16 @@ public class HashTable {
 		 * unsuccessful to find the desired-to-delete key, an error message will be
 		 * displayed and the user will be returned to the Menu.
 		 */
-		if (storage[hash] != key) {
+		if (table[hash] != key) {
 			while (true) {
-				if (storage[probingIndex] == key) {
+				if (table[probingIndex] == key) {
 					hash = probingIndex;
-					storage[hash] = -1;
+					table[hash] = -1;
 					System.out.println("Key deleted successfully!");
 					break;
 				}
 
-				probingIndex = probingIndex != (storage.length - 1) ? probingIndex + 1 : 0;
+				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
 
 				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
@@ -167,7 +163,7 @@ public class HashTable {
 				}
 			}
 		} else {
-			storage[hash] = -1;
+			table[hash] = -1;
 			System.out.println("Key deleted successfully!");
 		}
 	}
