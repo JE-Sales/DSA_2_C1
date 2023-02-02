@@ -2,18 +2,7 @@
 public class HashTable {
 	private int[] table;
 
-	/*
-	 * This is the default constructor for the HashTable. The constructor
-	 * initializes the array that will be used as the storage for the data that will
-	 * be inserted in the HashTable. Also a loop is created inside the constructor
-	 * to set the default dummy value of the array to negative one so that the
-	 * HashTable can also handle the value zero.
-	 */
-	public HashTable() {
-		table = new int[20];
-		for (int i = 0; i < table.length; i++)
-			table[i] = -1;
-	}
+	
 
 	/*
 	 * A method that adds a new Key on the HashTable. This method contains two
@@ -43,10 +32,10 @@ public class HashTable {
 		 * to find an unoccupied element, an error message will be displayed and the
 		 * user will be returned to the Menu.
 		 */
-		if (table[hash] != -1) {
+		if (table[hash] != 0) {
 
 			while (true) {
-				if (table[probingIndex] == -1) {
+				if (table[probingIndex] == 0) {
 					hash = probingIndex;
 					System.out.println("New Index: " + hash + "\n");
 					table[hash] = key;
@@ -150,7 +139,7 @@ public class HashTable {
 			while (true) {
 				if (table[probingIndex] == key) {
 					hash = probingIndex;
-					table[hash] = -1;
+					table[hash] = 0;
 					System.out.println("Key deleted successfully!");
 					break;
 				}
