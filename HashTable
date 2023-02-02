@@ -1,17 +1,14 @@
 
 public class HashTable {
 	private int[] table;
-
 	
-
 	/*
-	 * A method that adds a new Key on the HashTable. This method contains two
-	 * integer variables that plays a vital role in storing the possible indexes
-	 * where the inserted key will be stored. The first integer variable hash,
-	 * stores the original index for the key after undertaking the HashFunction but
-	 * if the index is already taken the probingIndex will be the index used since
-	 * it contains or may contain the available index for the key to be stored after
-	 * performing linear probing.
+	 * add function accepts integer as key.
+	 * The keys are then hashed by the HashFunction method.
+	 * Uses Linear probing as solution for the collisions. 
+	 * The add function prints the original index and the new index if it underwent 
+	 * linear probing.
+	 * 
 	 */
 	public void add(int key) {
 		int hash = HashFunction(key);
@@ -19,21 +16,15 @@ public class HashTable {
 		System.out.println("Original Index: " + hash);
 
 		/*
-		 * Adds a new hash on the HashTable using Linear Probing. If the element of the
-		 * array which has an index that has the same value as the hash contains a value
-		 * of negative one, which means its unoccupied, the hash will be inserted on
-		 * that element. Else if the element of the array which has an index that has
-		 * the same value as the hash contains a value greater than negative one, which
-		 * means that the index was occupied by an another hash, the hash that will be
-		 * inserted will then occupy the next nearest element that contains a zero
-		 * value. After reaching the end of the array and still is unsuccessful to find
-		 * an unoccupied element, the program will then go back at the top of the array
-		 * and will still search for an element. But if the hash is still unsuccessful
-		 * to find an unoccupied element, an error message will be displayed and the
-		 * user will be returned to the Menu.
+		 * Linear Probing:
+		 * The method searches for a vacant spot by 
+		 * identifying the dummy value used.
+		 * If the value in the position of the hash is not equal
+		 * to the dummy value, it means that it is occupied so
+		 * linear probing is to be executed.
+		 * Else, it is placed in the hash position since it is empty.
 		 */
 		if (table[hash] != 0) {
-
 			while (true) {
 				if (table[probingIndex] == 0) {
 					hash = probingIndex;
@@ -42,9 +33,10 @@ public class HashTable {
 					System.out.println("New key added successfully!");
 					break;
 				}
-
+				//Switches the probingIndex back to the start when the end of the table is reached.
 				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
-
+				
+				//If the probingIndex gets back to the hash, it is considered as full.
 				if (probingIndex == hash) {
 					System.out.println("The hash table is full! Add New Key unsuccessful.");
 					break;
@@ -57,42 +49,34 @@ public class HashTable {
 		}
 
 	}
-
+	
 	/*
-	 * A method that displays the HashTable using a for loop by displaying each
-	 * value of the element of the array. This method displays both the index and
-	 * the value that the HashTable contains. Unoccupied indexes are also displayed
-	 * by this method.
+	 * Shows the contents of the HashTable
+	 * It shows the index and the key that it contains.
 	 */
 	public void view() {
 		for (int i = 0; i < table.length; i++)
+			/*
+			 * The key displays "Empty" when the current index contains the 
+			 * dummy value, else it shows what the current value in the index.
+			 */
 			System.out.println("Index : " + i + " Key : " + (table[i] == -1 ? "Empty" : table[i]));
-
 	}
 
+	
 	/*
-	 * A method that searches a Key on the HashTable. This method also utilize
-	 * linear probing just like the add method where they contain two variables
-	 * which are the variable that gold the original and expected index and the
-	 * variable that contains the index which the key was stored due to linear
-	 * probing.
+	 * Searches for a key in the Hash Table.
+	 * The hash is first computed by the HashFunction method to find 
+	 * its expected position.
+	 * If it is not found in the hash, the other positions is searched.
+	 * It is considered as non-existent when the function looped through the 
+	 * Hash Table and it is still not found.
+	 * If it is found, the index together with the key is displayed.
 	 */
 	public void search(int key) {
 		int hash = HashFunction(key);
 		int probingIndex = (hash + 1);
-
-		/*
-		 * If the desired-to-search key is on the element of the array that has an index
-		 * that has the same value as the hash of the key, the program will then display
-		 * the key and also the index of the key on the array. Else if the
-		 * desired-to-search key is not on the element of the array that has an index
-		 * that has the same value as the hash of the key, the program will then find
-		 * the desired-to-search key on the other elements of the HashTable and display
-		 * it alongside its new index. After reaching the end of the array, the program
-		 * will now search from the top of the HashTable. But if the program is still
-		 * unsuccessful to find the desired-to-search key, an error message will be
-		 * displayed and the user will be returned to the Menu.
-		 */
+		
 		if (table[hash] != key) {
 			while (true) {
 				if (table[probingIndex] == key) {
@@ -100,9 +84,10 @@ public class HashTable {
 					System.out.println(" Index : " + hash + "Key : " + key);
 					break;
 				}
-
+				//Switches the probingIndex back to the start when the end of the table is reached.
 				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
-
+				
+				//If the probingIndex gets back to the hash, it is considered as full.
 				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
 					break;
@@ -114,27 +99,20 @@ public class HashTable {
 	}
 
 	/*
-	 * A method that deletes a Key on the HashTable. Linear probing is also used in
-	 * this method where the index of the key that is desired to be deleted will be
-	 * searched if the index of the key after being hashed is already taken by a
-	 * different key.
+	 * Deletes a key in the Hash Table.
+	 * The hash is first computed by the HashFunction method to find 
+	 * its expected position.
+	 * If it is not found in the hash, the other positions is searched.
+	 * It is considered as non-existent when the function looped through the 
+	 * Hash Table and it is still not found.
+	 * If it is found, the value in the hash is equal to the key input, it is deleted
+	 * from the Hash Table by replacing the value in the hash by the dummy value 0.
 	 */
 	public void delete(int key) {
 		int hash = HashFunction(key);
 		int probingIndex = (hash + 1);
 
-		/*
-		 * If the desired-to-delete key is on the element of the array that has an index
-		 * that has the same value as the hash of the key, the program will then remove
-		 * the key on the HashTable and will be replace by a dummy value, which is -1.
-		 * Else if the desired-to-delete key is not on the element of the array that has
-		 * an index that has the same value as the hash of the key, the program will
-		 * then find the desired-to-delete key on the other elements of the HashTable
-		 * and delete it. After reaching the end of the array, the program will now
-		 * search from the top of the HashTable. But if the program is still
-		 * unsuccessful to find the desired-to-delete key, an error message will be
-		 * displayed and the user will be returned to the Menu.
-		 */
+		
 		if (table[hash] != key) {
 			while (true) {
 				if (table[probingIndex] == key) {
@@ -143,9 +121,10 @@ public class HashTable {
 					System.out.println("Key deleted successfully!");
 					break;
 				}
-
+				//Switches the probingIndex back to the start when the end of the table is reached.
 				probingIndex = probingIndex != (table.length - 1) ? probingIndex + 1 : 0;
-
+				
+				//If the probingIndex gets back to the hash, it is considered as full.
 				if (probingIndex == hash) {
 					System.out.println("The key is non-existent in the hashtable.");
 					break;
@@ -158,12 +137,13 @@ public class HashTable {
 	}
 
 	/*
-	 * A method for Hashing using the division method, which takes the entered key
-	 * of the user and modulo dividing it to 20. Then the remainder of the division
-	 * will be returned as a hash.
+	 * Used to compute the hash.
+	 * Utilizes the division method to create hash values.
+	 * Returns the hash.
 	 */
 	private static int HashFunction(int key) {
 		int hash = key % 20;
 		return hash;
 	}
+	
 }
