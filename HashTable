@@ -84,7 +84,7 @@ public class HashTable {
 				while (true) {
 					if (table[probingIndex] == key) {
 						hash = probingIndex;
-						System.out.println(" Index : " + hash + "Key : " + key);
+						System.out.println("Index : " + hash + " Key : " + key);
 						break;
 					}
 					//Switches the probingIndex back to the start when the end of the table is reached.
