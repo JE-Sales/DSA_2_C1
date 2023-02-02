@@ -152,7 +152,7 @@ public class HashTable {
 				}
 			}
 		} else {
-			table[hash] = -1;
+			table[hash] = 0;
 			System.out.println("Key deleted successfully!");
 		}
 	}
