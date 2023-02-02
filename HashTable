@@ -60,7 +60,7 @@ public class HashTable {
 			 * The key displays "Empty" when the current index contains the 
 			 * dummy value, else it shows what the current value in the index.
 			 */
-			System.out.println("Index : " + i + " Key : " + (table[i] == -1 ? "Empty" : table[i]));
+			System.out.println("Index : " + i + " Key : " + (table[i] == 0 ? "Empty" : table[i]));
 	}
 
 	
