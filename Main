@@ -58,8 +58,8 @@ public class Main {
 					break;
 
 				/*
-				 * Displays the contents of the Hash Table It displays the index together with
-				 * its key value.
+				 * Displays the contents of the Hash Table.
+				 * It displays the index together with its key value.
 				 */
 				case 2:
 					System.out.println("\n--Display Hash Table--");
@@ -68,9 +68,10 @@ public class Main {
 					break;
 
 				/*
-				 * Searches for a key in the Hash Table Only valid inputs are Positive Integer
-				 * Displays the key and its index when found. Displays a prompt if it is not
-				 * found.
+				 * Searches for a key in the Hash Table. 
+				 * Only valid inputs are Positive Integer
+				 * Displays the key and its index when found.
+				 * Displays a prompt if it is not found.
 				 */
 				case 3:
 					try {
@@ -88,7 +89,8 @@ public class Main {
 					break;
 
 				/*
-				 * Deletes a key in the Hash Table Only valid inputs are Positive Integer
+				 * Deletes a key in the Hash Table. 
+				 * Only valid inputs are Positive Integer
 				 * Deletes the key when found, shows a prompt if it is not found
 				 */
 				case 4:
