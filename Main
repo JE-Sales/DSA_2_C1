@@ -46,7 +46,7 @@ public class Main {
 					try {
 						key = Integer.parseInt(reader.readLine());
 
-						if (key < 0) {
+						if (key <= 0) {
 							System.out.println("Only Enter WHOLE NUMBERS!\nPlease try again.");
 						} else {
 							hashtable.add(key);
