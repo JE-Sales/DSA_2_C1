@@ -133,7 +133,7 @@ public class HashTable {
 	}
 
 	/*
-	 * Used to compute the hash. Utilizes the division method to create hash values.
+	 * Used to compute the hash. Utilizes the modulo division method to create hash values.
 	 * Returns the hash.
 	 */
 	private static int hashFunction(int key) {
