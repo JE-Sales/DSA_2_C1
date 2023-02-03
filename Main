@@ -10,12 +10,12 @@ public class Main {
 		HashTable hashtable = new HashTable();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		int option, key;
-		
+
 		/*
-		 * The main menu of the program.
-		 * Calls the methods of the operations selected by the command input of the user.
-		 * Each methods also performs input checking to ensure no errors would occur.
-		 * If an error occurs, the user is returned into the main menu.
+		 * The main menu of the program. Calls the methods of the operations selected by
+		 * the command input of the user. Each methods also performs input checking to
+		 * ensure no errors would occur. If an error occurs, the user is returned into
+		 * the main menu.
 		 */
 		System.out.println("---HASH TABLE---");
 		while (true) {
@@ -36,8 +36,7 @@ public class Main {
 
 				switch (option) {
 				/*
-				 * Adds a key to the Hash Table.
-				 * Only valid inputs are Positive Integers
+				 * Adds a key to the Hash Table. Only valid inputs are Positive Integers
 				 */
 				case 1:
 					System.out.println("\n--Add New Key--");
@@ -47,33 +46,32 @@ public class Main {
 						key = Integer.parseInt(reader.readLine());
 
 						if (key <= 0) {
-							System.out.println("Only Enter WHOLE NUMBERS!\nPlease try again.");
+							System.out.println("Only Enter POSITIVE INTEGERS!\nPlease try again.");
 						} else {
 							hashtable.add(key);
 						}
 					} catch (NumberFormatException e) {
-						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+						System.out.println("The only allowed inputs are POSITIVE INTEGERS!\nPlease try again.");
 
 					}
 
 					break;
-					
-					/*
-					 * Displays the contents of the Hash Table
-					 * It displays the index together with its key value.
-					 */
+
+				/*
+				 * Displays the contents of the Hash Table It displays the index together with
+				 * its key value.
+				 */
 				case 2:
 					System.out.println("\n--Display Hash Table--");
 					hashtable.view();
 
 					break;
-					
-					/*
-					 * Searches for a key in the Hash Table
-					 * Only valid inputs are Positive Integer
-					 * Displays the key and its index when found.
-					 * Displays a prompt if it is not found.
-					 */
+
+				/*
+				 * Searches for a key in the Hash Table Only valid inputs are Positive Integer
+				 * Displays the key and its index when found. Displays a prompt if it is not
+				 * found.
+				 */
 				case 3:
 					try {
 						System.out.println("\n--Search Key--");
@@ -81,19 +79,18 @@ public class Main {
 						key = Integer.parseInt(reader.readLine());
 						hashtable.search(key);
 					} catch (NumberFormatException e) {
-						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+						System.out.println("The only allowed inputs are POSITIVE INTEGERS!\nPlease try again.");
 					} catch (ArrayIndexOutOfBoundsException e) {
 						System.out.println(
-								"The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+								"The only allowed inputs are POSITIVE INTEGERS, no Negative Integer!\nPlease try again.");
 					}
 
 					break;
 
-					/*
-					 * Deletes a key in the Hash Table
-					 * Only valid inputs are Positive Integer
-					 * Deletes the key when found, shows a prompt if it is not found
-					 */
+				/*
+				 * Deletes a key in the Hash Table Only valid inputs are Positive Integer
+				 * Deletes the key when found, shows a prompt if it is not found
+				 */
 				case 4:
 					try {
 						System.out.println("\n--Delete Key--");
@@ -101,14 +98,14 @@ public class Main {
 						key = Integer.parseInt(reader.readLine());
 						hashtable.delete(key);
 					} catch (NumberFormatException e) {
-						System.out.println("The only allowed inputs are WHOLE NUMBERS!\nPlease try again.");
+						System.out.println("The only allowed inputs are POSITIVE INTEGERS!\nPlease try again.");
 					} catch (ArrayIndexOutOfBoundsException e) {
 						System.out.println(
-								"The only allowed inputs are WHOLE NUMBERS, no Negative Integer!\nPlease try again.");
+								"The only allowed inputs are POSITIVE INTEGERS, no Negative Integer!\nPlease try again.");
 					}
 
 					break;
-					//Exits the program.
+				// Exits the program.
 				case 5:
 					System.out.print("\n--Exit--" + "\nProgram will be terminated");
 
@@ -122,7 +119,7 @@ public class Main {
 			}
 
 			catch (NumberFormatException e) {
-				System.out.println("Option number must be selected from numbers 1-5 only!\nPlease try again.");
+				System.out.println("Option number must be selected from NUMBERS 1-5 only!\nPlease try again.");
 			}
 		}
 	}
